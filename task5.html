@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>binbin_task5</title>
+    <link rel="stylesheet" type="text/css" href="task5.css">
+</head>
+<body>
+    <input type="text" id="input_num" />
+    <button id="left_in" onclick="left_in()">左侧入</button>
+    <button id="right_in" onclick="right_in()">右侧入</button>
+    <button id="left_out" onclick="left_out()">左侧出</button>
+    <button id="right_out" onclick="right_out()">右侧出</button>
+    <button id="sort" onclick="resort()">排序</button>
+    <div id="box" class="contain"></div>
+    <script type="text/javascript">
+
+        var box = document.getElementById("box");
+        function addNum(){
+            var input_num = document.getElementById("input_num");
+            var input_value = input_num.value;
+            var item = document.createElement("div");
+            //判断是否为数字
+            if((!isNaN(input_value)) && input_value>=10 && input_value<=100){
+                item.innerHTML = input_value;
+                item.className = "items";
+                item.style.height = input_value + 'px';
+                item.style.marginTop = (100 - input_value) + 'px';
+                item.addEventListener("click",remove);
+                return item;
+            }else{
+                alert("请输入一个10-100之间的整数！");
+            }
+        }
+
+        function remove(){
+            alert("移除的数值是：" + this.innerHTML);
+            this.parentNode.removeChild(this);
+        }
+
+        function left_in(){
+            var arr = document.getElementsByClassName('item');
+            if(arr.length<60){
+                var item = addNum();
+                box.insertBefore(item,box.firstElementChild);
+            }else{
+                alert("元素达到上限不能添加！");
+            }
+        }
+
+        function right_in(){
+            var arr = document.getElementsByClassName('items');
+            if(arr.length<60){
+                var item = addNum();
+                box.appendChild(item);
+            }else{
+                alert("元素达到上限不能添加！");
+            }
+        }
+
+        function left_out(){
+            if(box.firstElementChild){
+                alert("删除元素的值为："+box.firstElementChild.innerHTML);
+                box.removeChild(box.firstElementChild);
+            }else{
+                alert("没有元素可以删除了！");
+            }
+        }
+
+        function right_out(){
+            if(box.lastElementChild){
+                alert("删除元素的值为："+box.lastElementChild.innerHTML);
+                box.removeChild(box.lastElementChild);
+            }else{
+                alert("没有元素可以删除了");
+            }
+        }
+
+        function resort(){
+            var arr = document.getElementsByClassName('items');
+            var arg = [].slice.call(arr);
+            var len = arg.length;
+            if(len!=0){
+                arg.sort(function(arg1,arg2){
+                    var value1 = arg1.innerText;
+                    var value2 = arg2.innerText;
+                    return value1 - value2;
+                });
+                for(var i=0; i<len; i++){
+                    box.appendChild(arg[i]);
+                }
+            }else{
+                alert("没有元素可以删除了");
+            }
+        }
+    </script>
+</body>
+</html>

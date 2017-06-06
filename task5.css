@@ -1,0 +1,13 @@
+.contain{
+    margin-top: 10px;
+    height: 100px;
+}
+.items{
+    float: left;
+    padding: 0px 5px;
+    background-color: #F00;
+    font-size: 10px;
+    color: #FFF;
+    text-align: center;
+    border: 1px solid white;
+}
