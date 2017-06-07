@@ -1,0 +1,9 @@
+li{
+    display: inline-block;
+    background-color: palevioletred;
+    width: 60px;
+    height: 40px;
+    margin: 10px;
+    text-align: center;
+    line-height: 40px;
+}
